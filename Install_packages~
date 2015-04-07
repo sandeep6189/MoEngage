@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#keep a list of packages required for the pmp-android backend server
+
+#--------------------------------------------------------------
+#check if we are running as root or 
+
+	if [[ $UID -ne 0 ]];then
+		echo "$0 must be run as root. Most of the packages requires root's privileges"
+		exit 1
+	fi
+#---------------------------------------------------------------
+
+	FLAG = ""
+	if [ "$1" != "" ];then
+		FLAG=$1
+		echo "Using Flag " $FLAG
+	fi
+
+#update and upgrade
+
+	apt-get update -y
+	apt-get upgrade -y
+
+#packages required 
+
+	apt-get install $FLAG vim      				# text-editor for editing files
+	apt-get install $FLAG apache2  				# apache server for django deployment
+	#apt-get install $FLAG screen  				# to use screen command
+	#apt-get install $FLAG iptables 				# administering tool for ipv4/6 packet filtering
+	apt-get install $FLAG git 					# git for version control
+#mysql packages
+	apt-get install $FLAG mysql-server 			# mysql-server 
+	apt-get install $FLAG mysql-client			# to connect and query to db
+	apt-get install $FLAG libmysqlclient-dev 	# django requires for this package for mysql client connection			
+#python packages
+	apt-get install $FLAG python2				# using python2 for development
+	apt-get install $FLAG python-dev 			# developer package of python for django
+	#apt-get install $FLAG python-pip			# pip is used to install python packages
+	wget https://bootstrap.pypa.io/get-pip.py
+	python get-pip.py
+
+#Django packages
+	#pip install Django 							# Latest version of django
+	#pip install django-sslserver				# django ssl-server
+	pip install mysql-python					# mysql for python , dependencies - libmysqlclient-dev, python-dev
+	pip install Flask
+ 	pip install flask-login
+ 	pip install flask-sqlalchemy
+ 	pip install flask-debugtoolbar
+ 	pip install MySQL-python
+ 	pip install pyyaml ua-parser user-agents
+ 	pip install flask-wtf
+ 	pip install Flask-Social
+ 	pip install flask-mysql
+ 	pip install rauth
+ 	pip install flask_util_js
