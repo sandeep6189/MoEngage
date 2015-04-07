@@ -1,0 +1,106 @@
+
+    <!DOCTYPE html>
+    <html lang="en" ng-app='preferences'>
+    <head>
+      <meta charset="utf-8">
+      <title>Make Posts | MoEngage</title>
+      <meta name="keywords" content="Moengage Share Posts Friends">
+      <meta name="author" content=" Moengage ">
+      <meta name="description" content=" An application to login through fb and share and tag posts to friends directly from it.">
+      <!-- styles -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='font/css/fontello.css') }}" rel="stylesheet">
+      <link href='http://fonts.googleapis.com/css?family=Bubblegum+Sans|Ubuntu' rel='stylesheet' type='text/css'>
+      <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src="{{ url_for('static', filename='js/make_posts.js') }}"></script>
+    </head>
+    <body style="overflow-y:hidden">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container" style="width:90%"> 
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span> 
+                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+               </a> 
+            <a class="brand" href="{{ url_for('index') }}"><img src="{{ image }}"/></a>
+            <ul class="nav nav-collapse pull-right">
+               <li style="margin-right: 0px;"><a href="{{ url_for('index') }}" ><i class="icon-user"></i> Profile</a></li>
+               <li style="margin-left: 10px"><a href="#" class="active" ><i class="icon-paper-plane"></i> Make Posts </a></li>
+               <li style="margin-left: -25px;"><a href="{{ url_for('logout') }}" ><i class="icon-paper-plane"></i> Logout</a></li>
+            </ul>
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <div class="nav nav-collapse pull-right">
+            <!-- .nav, .navbar-search, .navbar-form, etc -->
+          </div>
+            <div class="UserName" style="margin-top:30px"><p>Welcome , {{ user }}</p></div>
+            <div style="display:none" id="current_user">{{ user }}</div>
+            <div style="display:none" id="current_user_id">{{ id }}</div>
+
+        </div>
+      </div>
+
+    </div>
+    <!--Profile container-->
+  <div class="clearfix">
+    <div class="container profile">
+      <div class="span4">
+        <h3 style="color:rgb(12, 197, 127);font-weight:bold">Make Posts</h3>
+        <div ng-controller="PostController" class="make_post">
+           <form>
+              <div class="form-group">
+                <textarea rows="5" cols="20" id="post_content" placeholder="Write post ..." ></textarea>
+              </div>
+              <button type="submit" class="btn btn-default" ng-click="makePost()">Post</button>
+            </form>            
+        </div>
+      </div>
+       <div class="span4" >
+          <h3 style="color:rgb(12, 197, 127);font-weight:bold;margin-left:30px">Current Tags</h3>
+          <div  id="current_tags" style="">
+                          
+          </div>
+      </div>
+      <div class="span3">
+        <h3 style="color:rgb(12, 197, 127);font-weight:bold">Tag Friends</h3>
+          <div ng-controller="SearchPreferenceController" style="overflow:auto;overflow-x:hidden;height:400px;width:320px">
+              <input type="text" class="form-control" placeholder="Search" style="width:100%;height:20px;" name="query" ng-model="query" id="query"> 
+             <ol style="list-style:none;margin-left:10px"> 
+                <li class="stbody" ng-repeat="friend in friends">
+                    <div class="stimg">
+                        <img ng-src="[[friend.pic]]" width="60" height="60" />
+                    </div> 
+                    <div class="sttext">
+                        [[friend.name]]
+                        <div class="sttime"></div>
+                        <div class="add_app pull-right" style="margin-top:0px"><button class="btn" ng-click="tagFriend([[friend.id]])">Tag</button></div> 
+                    </div> 
+                </li> 
+
+            </ol>
+          </div>
+      </div-->
+
+   </div>
+  </div>
+    <!--END: Profile container-->
+    <!-- Social Icons -->
+    
+    <!-- END: Social Icons -->
+    <!-- Footer -->
+    <div class="footer" style="left:0;height:50px">
+      <div class="container">
+        <p class="pull-left" style="margin-top:10px"><aif(typeof(Storage) !== "undefined") { href="#">Copyright &#169; MoEngage</a></p>
+      </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    });
+    </script>
+    </body>
+  </html>

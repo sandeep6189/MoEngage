@@ -1,0 +1,63 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Login | MoEngage</title>
+      <meta name="keywords" content="Moengage Share Posts Friends">
+      <meta name="author" content=" Moengage ">
+      <meta name="description" content=" An application to login through fb and share and tag posts to friends directly from it.">
+      <!-- styles -->    
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='font/css/fontello.css') }}" rel="stylesheet">
+      <link href='http://fonts.googleapis.com/css?family=Bubblegum+Sans|Ubuntu' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.css">      
+      <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
+    </head>
+    <body style="overflow-y:hidden">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container"> 
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span> 
+                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+               </a> 
+            <a class="brand" href="{{ url_for('index') }}"><img src="{{url_for('static',filename='img/user.jpg') }}" /></a>
+            <ul class="nav nav-collapse pull-right">
+              <!--li style="margin-right: 0px;"><a href="index" ><i class="icon-user"></i> Profile</a></li-->
+              <li style="margin-left: 10px;"><a href="#" class="active"><i class="icon-paper-plane"></i> Login</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <!--Profile container-->
+   <div class="clearfix">
+    <div class="container profile">
+      <div class="span2"></div>
+      <div class="span4">
+              <h2>I don't know you!</h2>
+            <p ><a style="text-align:center;padding-left:0" class="btn btn-block btn-social btn-facebook" href="{{ url_for('oauth_authorize', provider='facebook') }}">
+                    <i class="fa fa-facebook" style="font-size:1.3em;top:5px"></i> Sign in with Facebook
+            </a></p>
+
+      </div>
+      <div class="span2"></div>
+    </div>
+  </div> 
+
+    <!--END: Profile container-->
+    <!-- Social Icons -->
+    
+    <!-- END: Social Icons -->
+    <!-- Footer -->
+    <div class="footer" style="left:0;height:50px">
+      <div class="container">
+        <p class="pull-left" style="margin-top:10px"><a href="#">Copyright &#169; MoEngage</a></p>
+      </div>
+    </div>
+    </body>
+  </html>

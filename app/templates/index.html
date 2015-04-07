@@ -1,0 +1,90 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title> User Feeds | MoEngage </title>
+    <meta name="keywords" content="Moengage Share Posts Friends">
+    <meta name="author" content=" Moengage ">
+    <meta name="description" content=" An application to login through fb and share and tag posts to friends directly from it.">
+    <!-- styles -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='font/css/fontello.css') }}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Bubblegum+Sans|Ubuntu' rel='stylesheet' type='text/css'>
+    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    </head>
+    <body style="overflow-y:hidden">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container" style="width:90%"> 
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span> 
+                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+               </a> 
+            <a class="brand" href="{{ url_for('index') }}"><img src="{{ image }}"/></a>
+            <ul class="nav nav-collapse pull-right">
+              <li style="margin-right: 0px;"><a href="#" class="active"><i class="icon-user"></i> Profile</a></li>
+              <li style="margin-left: 10px"><a href="/make_posts"  ><i class="icon-paper-plane"></i> Make Posts </a></li>
+              <li style="margin-left: -25px;"><a href="{{ url_for('logout') }}" ><i class="icon-paper-plane"></i> Logout</a></li>
+  
+            </ul>
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <div class="nav nav-collapse pull-right">
+            <!-- .nav, .navbar-search, .navbar-form, etc -->
+          </div>
+            <div class="UserName" style="margin-top:30px"><p>Welcome , {{ user }}</p></div>
+            <div style="display:none" id="current_user_id">{{ id }}</div>
+        </div>
+      </div>
+    </div>
+    <!--Profile container-->
+    <div class="clearfix">
+      <div class="container profile" id="">
+        <div class="span3"> 
+          
+          
+         </div>
+        <div class="hidden-md hidden-lg span5" id="user_feeds" style="overflow:auto;overflow-x:hidden;height:450px;">
+              
+        </div>
+        <div class="span3"> 
+          </div>
+      </div>
+      <!--END: Profile container-->
+      <!-- Social Icons -->
+      
+      <!-- END: Social Icons -->
+      <!-- Footer -->
+      <div class="footer" style="left:0;height:50px">
+        <div class="container">
+          <p class="pull-left" style="margin-top:10px"><a href="#">Copyright &#169; MoEngage</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts -->
+    <script type="text/javascript">
+      $(document).ready(function(){
+          var id = $('#current_user_id').html()
+          $.post("/get_posts",{id:id},function(data){
+
+            var posts = eval('('+data+')');
+            var ol = "<ol style='list-style:none;margin-left:10px'>";
+            for(var i=0;i<posts.length;i++)
+            {
+              ol+="<li class='stbody'><div class='stimg'><img src='"+posts[i]['pic']+"' width='60' height='60' /></div><div class='sttext'>"+posts[i]['content']+"</div><div class='stperson'>Posted By - "+posts[i]['posted_by']+"</div><div class='sttime'>Posted At - "+posts[i]['created_at']+"</div></li>"  
+            }
+            ol+="</ol>";
+            $('#user_feeds').html(ol);
+          });
+        });
+    </script>
+    </body>
+
+
+
+    </html>
