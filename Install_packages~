@@ -40,9 +40,8 @@
 	wget https://bootstrap.pypa.io/get-pip.py
 	python get-pip.py
 
-#Django packages
-	#pip install Django 							# Latest version of django
-	#pip install django-sslserver				# django ssl-server
+#Flask packages
+
 	pip install mysql-python					# mysql for python , dependencies - libmysqlclient-dev, python-dev
 	pip install Flask
  	pip install flask-login
@@ -53,5 +52,7 @@
  	pip install flask-wtf
  	pip install Flask-Social
  	pip install flask-mysql
+	pip install Flask-Migrate	
+	pip install Flask-Script
  	pip install rauth
  	pip install flask_util_js

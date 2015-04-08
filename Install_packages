@@ -25,7 +25,8 @@
 #packages required 
 
 	apt-get install $FLAG vim      				# text-editor for editing files
-	apt-get install $FLAG apache2  				# apache server for django deployment
+	apt-get install $FLAG apache2
+	apt-get install libapache2-mod-wsgi  				# apache server for django deployment
 	#apt-get install $FLAG screen  				# to use screen command
 	#apt-get install $FLAG iptables 				# administering tool for ipv4/6 packet filtering
 	apt-get install $FLAG git 					# git for version control
@@ -52,5 +53,7 @@
  	pip install flask-wtf
  	pip install Flask-Social
  	pip install flask-mysql
+	pip install Flask-Migrate	
+	pip install Flask-Script
  	pip install rauth
  	pip install flask_util_js

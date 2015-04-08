@@ -93,13 +93,14 @@ def oauth_callback(provider):
     for friend in app_using_friends:
     	friend_social_id = "facebook$"+friend['id']
     	friend_obj = User.query.filter_by(social_id=friend_social_id).first()
-    	friend_id = friend_obj.id
-    	is_friend = Graph_friends.query.filter_by(source_user_id=user.id,end_user_id=friend_id).first()
-    	if not is_friend:
-    		#add into the graph
-    		add_node = Graph_friends(source_user_id=user.id,end_user_id=friend_id)
-    		db.session.add(add_node)
-        	db.session.commit()
+    	if friend_obj:
+	    	friend_id = friend_obj.id
+	    	is_friend = Graph_friends.query.filter_by(source_user_id=user.id,end_user_id=friend_id).first()
+	    	if not is_friend:
+	    		#add into the graph
+	    		add_node = Graph_friends(source_user_id=user.id,end_user_id=friend_id)
+	    		db.session.add(add_node)
+	        	db.session.commit()
     login_user(user, True)
 
     return redirect(url_for('index'))
